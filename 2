@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+class Doctor {
+private:
+    string name;
+    int id;
+    string specialization;
+    int patients_attended;
+    double consultation_fee;
+
+public:
+    Doctor(string n, int i, string spec, int patients, double fee)
+        : name(n), id(i), specialization(spec), patients_attended(patients), consultation_fee(fee) {}
+
+    double calculateEarnings() {
+        return patients_attended * consultation_fee;
+    }
+
+    void displayDetails() {
+        cout << "Doctor Name: " << name << "\nID: " << id
+             << "\nSpecialization: " << specialization
+             << "\nTotal Earnings: " << calculateEarnings() << "\n\n";
+    }
+};
+
+int main() {
+    Doctor doc1("Dr. Smith", 101, "Cardiologist", 120, 500);
+    doc1.displayDetails();
+
+    return 0;
+}
