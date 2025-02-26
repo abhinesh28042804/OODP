@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cstring>
+
+const int MAX_BOOKS = 5;
+
+void displayBooks(char* books[], bool available[], int count) {
+    for (int i = 0; i < count; i++) {
+        std::cout << i + 1 << ". " << *(books + i) << " - " 
+                  << (available[i] ? "Available" : "Checked Out") << "\n";
+    }
+}
+
+void checkOutBook(bool available[], int index, int count) {
+    if (index >= 0 && index < count && available[index]) {
+        available[index] = false;
+        std::cout << "Book checked out successfully.\n";
+    } else {
+        std::cout << "Invalid choice or book already checked out.\n";
+    }
+}
+
+int main() {
+    char book1[] = "history";
+    char book2[] = "bio";
+    char book3[] = "maths";
+    char book4[] = "chem";
+    char book5[] = "phy";
+
+    char* books[MAX_BOOKS] = {book1, book2, book3, book4, book5};
+    bool available[MAX_BOOKS] = {true, true, true, true, true};
+
+    int choice;
+    
+    while (true) {
+        std::cout << "\nLibrary Books:\n";
+        displayBooks(books, available, MAX_BOOKS);
+        std::cout << "Enter book number to check out (0 to exit): ";
+        std::cin >> choice;
+        
+        if (choice == 0)
+            break;
+
+        checkOutBook(available, choice - 1, MAX_BOOKS);
+    }
+
+    return 0;
+}
